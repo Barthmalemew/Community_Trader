@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>requestList</class>
+ <widget class="QDialog" name="requestList">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>715</width>
+    <height>416</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>60</y>
+     <width>411</width>
+     <height>321</height>
+    </rect>
+   </property>
+   <property name="editTriggers">
+    <set>QAbstractItemView::NoEditTriggers</set>
+   </property>
+   <property name="selectionMode">
+    <enum>QAbstractItemView::NoSelection</enum>
+   </property>
+   <row>
+    <property name="text">
+     <string>User 1</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>User 2</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>User 3</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>User 4</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>User 5</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>User 6</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>User 7</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>User 8</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>User 9</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>User 10</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>Username</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Request Status</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Request</string>
+    </property>
+   </column>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
