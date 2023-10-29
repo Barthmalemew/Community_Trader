@@ -2,6 +2,7 @@
 #include <cctype>
 #include<cstdlib>
 #include<ctime>
+#include<algorithm>
 
 using namespace std;
 
@@ -9,23 +10,18 @@ const int MAXSIZE = 10;
 const int NAMESIZE = 11;
 const int REQUESTSIZE = 25;
 
-
 void userInput(bool arrayS[],char arrayN[][NAMESIZE],char arrayR[][REQUESTSIZE], int INDEX);
 
 void userOutput(const bool arrayS[],const char arrayN[][NAMESIZE],const char arrayR[][REQUESTSIZE], int INDEX, int uId);
 
 void userGive(bool arrayS[], const char arrayN[][NAMESIZE], const char arrayR[][REQUESTSIZE], int ID);
 
-void randInnit(bool arrayS[]);
-
-void randInnit(char arrayN[][NAMESIZE]);
-
-void randInnit(char arrayR[][REQUESTSIZE]);
+void randInnit(bool arrayS[], int MAXSIZE);
 
 
 int main()
 {
-    
+    int ranStore[MAXSIZE-1];
     bool requestArray[MAXSIZE];
     char nameBox[MAXSIZE][NAMESIZE];
     char requestBox[MAXSIZE][REQUESTSIZE];
@@ -38,6 +34,7 @@ int main()
     int pinInput = 0;
 
     //intitalizing every index with values sans the users index // We have to shorten this 
+    /*
     requestArray[0] = true;
     requestArray[1] = true;
     requestArray[2] = true;
@@ -48,6 +45,9 @@ int main()
     requestArray[7] = false;
     requestArray[8] = true;
     requestArray[9] = false;
+    */
+    randInnit(requestArray, MAXSIZE);
+
     snprintf(nameBox[0], NAMESIZE, "John");
     snprintf(nameBox[1], NAMESIZE, "Alex");
     snprintf(nameBox[2], NAMESIZE, "Zoe");
@@ -57,6 +57,7 @@ int main()
     snprintf(nameBox[6], NAMESIZE, "Tom");
     snprintf(nameBox[8], NAMESIZE, "Kat");
     snprintf(nameBox[9], NAMESIZE, "Belle");
+
     snprintf(requestBox[0], REQUESTSIZE, "1 Burger");
     snprintf(requestBox[1], REQUESTSIZE, "1 Laptop");
     snprintf(requestBox[2], REQUESTSIZE, "20 Hairbrushs");
@@ -66,7 +67,8 @@ int main()
     snprintf(requestBox[6], REQUESTSIZE, "19 Fish");
     snprintf(requestBox[8], REQUESTSIZE, "11 Knives");
     snprintf(requestBox[9], REQUESTSIZE, "5 Golden Bells");
-    
+
+ ;
 
     cout << "Enter User ID: ";
     cin >> userIdInput;
@@ -171,7 +173,7 @@ void userGive(bool arrayS[], const char arrayN[][NAMESIZE], const char arrayR[][
 			if (decision == 'y')
 			{
 				arrayS[targetIndex] = false;
-				reciveGive = bool(rand() % 1);
+				reciveGive = bool(rand() > (RAND_MAX / 2));
 				if (reciveGive == true && arrayS[uId] == true)
 				{
 					arrayS[uId] = false;
@@ -201,7 +203,12 @@ void userGive(bool arrayS[], const char arrayN[][NAMESIZE], const char arrayR[][
 
 }
 
-void randInnit(bool arrayS[])
+void randInnit(bool arrayS[], int MAXSIZE)
 {
 
+    for (int i = 0; i < MAXSIZE; i++)
+    {
+        arrayS[i] = bool(rand() > (RAND_MAX / 2));
+    }
 }
+
