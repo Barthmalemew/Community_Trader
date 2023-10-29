@@ -57,7 +57,7 @@ int main()
 	snprintf(requestBox[9], REQUESTSIZE, "%d Golden Bells", (rand() % 50 + 1));
 
  ;
-
+ cout << "-------------------------------\n";
 	cout << "Enter User ID: ";
 	cin >> userIdInput;
 	cin.ignore(256, '\n');
@@ -71,16 +71,20 @@ int main()
 			printf("Welcome User %d \n", userId);
 		}
 	}
-				  
+	cout << "-------------------------------\n";
 
 
 
 	userInput(requestArray, nameBox, requestBox, userId);
 
+	cout << "-------------------------------\n";
+
 	for(int i = 0; i < MAXSIZE; i++ )
 	{
 	   userOutput(requestArray, nameBox, requestBox, i, userId);
 	}
+	cout << "-------------------------------\n";
+
 	userGive(requestArray, nameBox, requestBox, userId);
 
 }
@@ -132,9 +136,13 @@ void userOutput(const bool arrayS[],const char arrayN[][NAMESIZE],const char arr
 {
 	if(arrayS[INDEX] == true && INDEX != uId)
 	{
-		cout << INDEX << " ";
+		/*
+		cout << "|" << INDEX << " ";
 		cout << arrayN[INDEX] << " ";
-		cout << arrayR[INDEX] << endl;
+		cout << arrayR[INDEX] << "*" << endl;
+		*/
+
+		printf("| %d %-6s %-18s | \n",INDEX, arrayN[INDEX], arrayR[INDEX]);
 	}
 }
 
@@ -171,6 +179,7 @@ void userGive(bool arrayS[], const char arrayN[][NAMESIZE], const char arrayR[][
 				else
 				{
 					cout << "Anonymous has thanked you for fulfilling their request \n";
+					cout << "ASCII cat goes here";
 				}
 
 			}
