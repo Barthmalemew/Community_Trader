@@ -2,7 +2,7 @@
 #include <cctype>
 #include<cstdlib>
 #include<ctime>
-#include<algorithm>
+
 
 using namespace std;
 
@@ -179,8 +179,12 @@ void userGive(bool arrayS[], const char arrayN[][NAMESIZE], const char arrayR[][
 				else
 				{
 					cout << "Anonymous has thanked you for fulfilling their request \n";
-					cout << "ASCII cat goes here";
-				}
+					cout <<"   \\    /\\ "<< endl;
+                    cout <<"    )  ( ')  "<< endl;
+                    cout <<"   (  /  )  "<< endl;
+                    cout <<"    \\(__)| "<< endl;
+                        				
+                }
 
 			}
 			else if (decision == 'n')
