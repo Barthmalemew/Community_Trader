@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cctype>
+#include<cstdlib>
+#include<ctime>
 
 using namespace std;
 
@@ -10,20 +12,32 @@ const int REQUESTSIZE = 25;
 
 void userInput(bool arrayS[],char arrayN[][NAMESIZE],char arrayR[][REQUESTSIZE], int INDEX);
 
-void userOutput(const bool arrayS[],const char arrayN[][NAMESIZE],const char arrayR[][REQUESTSIZE], int INDEX);
+void userOutput(const bool arrayS[],const char arrayN[][NAMESIZE],const char arrayR[][REQUESTSIZE], int INDEX, int uId);
+
+void userGive(bool arrayS[], const char arrayN[][NAMESIZE], const char arrayR[][REQUESTSIZE], int ID);
+
+void randInnit(bool arrayS[]);
+
+void randInnit(char arrayN[][NAMESIZE]);
+
+void randInnit(char arrayR[][REQUESTSIZE]);
+
 
 int main()
 {
+    
     bool requestArray[MAXSIZE];
     char nameBox[MAXSIZE][NAMESIZE];
     char requestBox[MAXSIZE][REQUESTSIZE];
+
+    srand(time(0));
 
     int userId = 7;
     int userIdInput = 0;
     int pin = 4963;
     int pinInput = 0;
 
-    //intitalizing every index with values sans the users index
+    //intitalizing every index with values sans the users index // We have to shorten this 
     requestArray[0] = true;
     requestArray[1] = true;
     requestArray[2] = true;
@@ -45,7 +59,7 @@ int main()
     snprintf(nameBox[9], NAMESIZE, "Belle");
     snprintf(requestBox[0], REQUESTSIZE, "1 Burger");
     snprintf(requestBox[1], REQUESTSIZE, "1 Laptop");
-    snprintf(requestBox[2], REQUESTSIZE, "20 Hairbrush");
+    snprintf(requestBox[2], REQUESTSIZE, "20 Hairbrushs");
     snprintf(requestBox[3], REQUESTSIZE, "12 Bricks");
     snprintf(requestBox[4], REQUESTSIZE, "10 Books");
     snprintf(requestBox[5], REQUESTSIZE, "7 Cats");
@@ -56,6 +70,7 @@ int main()
 
     cout << "Enter User ID: ";
     cin >> userIdInput;
+    cin.ignore(256, '\n');
     if (userIdInput == userId)
     {
         cout << "Enter Passcode: ";
@@ -74,8 +89,10 @@ int main()
 
     for(int i = 0; i < MAXSIZE; i++ )
     {
-       userOutput(requestArray, nameBox, requestBox, i);
+       userOutput(requestArray, nameBox, requestBox, i, userId);
     }
+    userGive(requestArray, nameBox, requestBox, userId);
+
 }
 
 void userInput(bool arrayS[],char arrayN[][NAMESIZE],char arrayR[][REQUESTSIZE], int INDEX)
@@ -87,7 +104,7 @@ void userInput(bool arrayS[],char arrayN[][NAMESIZE],char arrayR[][REQUESTSIZE],
     cin.getline(arrayN[INDEX], NAMESIZE);
 
     cout << "User do you want to make a request? Enter y/n: ";
-    decision = cin.get(); //neither cin << or cin.get discard the damn '\n' from the keyboard buffer
+    decision = cin.get();
     cin.ignore(256, '\n' );
     decision = tolower(decision);
     
@@ -121,9 +138,9 @@ void userInput(bool arrayS[],char arrayN[][NAMESIZE],char arrayR[][REQUESTSIZE],
 }
 
 
-void userOutput(const bool arrayS[],const char arrayN[][NAMESIZE],const char arrayR[][REQUESTSIZE], int INDEX)
+void userOutput(const bool arrayS[],const char arrayN[][NAMESIZE],const char arrayR[][REQUESTSIZE], int INDEX, int uId)
 {
-    if(arrayS[INDEX] == true)
+    if(arrayS[INDEX] == true && INDEX != uId)
     {
         cout << INDEX << " ";
         cout << arrayN[INDEX] << " ";
@@ -131,4 +148,60 @@ void userOutput(const bool arrayS[],const char arrayN[][NAMESIZE],const char arr
     }
 }
 
+void userGive(bool arrayS[], const char arrayN[][NAMESIZE], const char arrayR[][REQUESTSIZE], int uId)
+{
+    
+    
+    char decision = ' ';
+    int targetIndex = 0;
+    int rId = 0; //index of the person the user is fulfilling the request of
+   
+    do
+    {
+        bool reciveGive = false;
+		cout << "Enter an index of a person whose request you want to fulfill or -1 to exit the program: "; //remeber to tell the user the exit value 
+		cin >> targetIndex;
 
+		if (targetIndex != -1 && (arrayS[targetIndex] == true && targetIndex < MAXSIZE && targetIndex != uId)) //will be a do while
+		{
+			cout << "Enter y to confirm filling the order, and n to cancel and go back to selecting: ";
+			cin >> decision;
+			decision = tolower(decision);
+
+			if (decision == 'y')
+			{
+				arrayS[targetIndex] = false;
+				reciveGive = bool(rand() % 1);
+				if (reciveGive == true && arrayS[uId] == true)
+				{
+					arrayS[uId] = false;
+					cout << "Anonymous has fulfilled your request as thanks\n";
+
+				}
+				else
+				{
+					cout << "Anonymous has thanked you for fulfilling their request \n";
+				}
+
+			}
+			else if (decision == 'n')
+			{
+
+			}
+		}
+		else if (targetIndex != -1)
+		{
+			cout << "Invalid index, please try again.\n";
+		}
+    } while (targetIndex != -1);
+
+
+    
+
+
+}
+
+void randInnit(bool arrayS[])
+{
+
+}
